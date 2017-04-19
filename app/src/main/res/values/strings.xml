@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BusDemo</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_eventbus">EventBus</string>
+    <string name="title_otto">Otto</string>
+    <string name="title_rxbus">RxBus</string>
+
+    <string name="resubscribe">发生了Error, 已重新订阅</string>
+    <string name="sticky">发生了Error,已经catch</string>
+</resources>
