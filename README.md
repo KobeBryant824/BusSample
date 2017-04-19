@@ -1,6 +1,6 @@
 ## 简介
 
-EventBus、Otto、RxBus是Android端优化的publish/subscribe事件总线，简化了应用程序内各组件间、组件与后台线程间的通信。比如请求网络，等网络返回时通过Handler或Broadcast、LocalBroadcast通知UI，两个Fragment之间需要通过Listener通信，这些需求都可以通过EventBus实现。
+EventBus、Otto、RxBus是Android端优化的publish/subscribe事件总线，简化了应用程序内各组件间、组件与后台线程间的通信。比如请求网络，等网络返回时通过Handler或Broadcast、LocalBroadcast通知UI，两个Fragment之间需要通过Listener通信，这些需求都可以通过事件总线实现。
 
 ## 应用场景
 
