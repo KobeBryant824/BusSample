@@ -13,8 +13,17 @@
             android:title="@string/title_otto"/>
 
     <item
-            android:id="@+id/navigation_rxbus"
+            android:id="@+id/navigation_rxbus_old"
             android:icon="@drawable/ic_notifications_black_24dp"
-            android:title="@string/title_rxbus"/>
+            android:title="@string/title_rxbus_old"/>
+    <item
+            android:id="@+id/navigation_rxbus_new"
+            android:icon="@drawable/ic_assignment_ind_black_24dp"
+            android:title="@string/title_rxbus_new"/>
+
+    <item
+            android:id="@+id/navigation_messenger"
+            android:icon="@drawable/ic_message_black_24dp"
+            android:title="@string/title_messenger"/>
 
 </menu>

@@ -1,4 +1,4 @@
-package com.cxh.busdemo.rxbus;
+package com.cxh.busdemo.rxbusolder;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,7 +22,7 @@ public class CActivity extends AppCompatActivity {
 
 
     public void onPublishEventOnMainThread(View view){
-        RxBus.getDefault().post(new Event("大家好，我是RxBus，我是一条来自C的消息"));
+        RxBus.getDefault().post(new Event("大家好，我是RxBusOld，我是一条来自C的消息"));
         finish();
     }
 
@@ -30,7 +30,7 @@ public class CActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                RxBus.getDefault().post(new Event("大家好，我是RxBus，我是一条来自C的后台线程的消息"));
+                RxBus.getDefault().post(new Event("大家好，我是RxBusold，我是一条来自C的后台线程的消息"));
                 finish();
             }
         }).start();

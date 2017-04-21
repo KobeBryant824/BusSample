@@ -1,4 +1,4 @@
-package com.cxh.busdemo.rxbus;
+package com.cxh.busdemo.rxbusolder;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

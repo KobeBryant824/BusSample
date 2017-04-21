@@ -9,8 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.cxh.busdemo.eventbus.EventBusFragment;
+import com.cxh.busdemo.messenger.MessengerFragment;
 import com.cxh.busdemo.otto.OttoFragment;
-import com.cxh.busdemo.rxbus.RxBusFragment;
+import com.cxh.busdemo.rxbusnew.RxBusNewFragment;
+import com.cxh.busdemo.rxbusolder.RxBusFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,8 +30,16 @@ public class MainActivity extends AppCompatActivity {
                     switchContent(new OttoFragment());
                     return true;
 
-                case R.id.navigation_rxbus:
+                case R.id.navigation_rxbus_old:
                     switchContent(new RxBusFragment());
+                    return true;
+
+                case R.id.navigation_rxbus_new:
+                    switchContent(new RxBusNewFragment());
+                    return true;
+
+                case R.id.navigation_messenger:
+                    switchContent(new MessengerFragment());
                     return true;
             }
             return false;

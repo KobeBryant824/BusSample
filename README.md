@@ -1,6 +1,6 @@
 ## 简介
 
-EventBus、Otto、RxBus是Android端优化的publish/subscribe事件总线，简化了应用程序内各组件间、组件与后台线程间的通信。比如请求网络，等网络返回时通过Handler或Broadcast、LocalBroadcast通知UI，两个Fragment之间需要通过Listener通信，这些需求都可以通过事件总线实现。
+四者都是Android端优化的publish/subscribe事件总线，简化了应用程序内各组件间、组件与后台线程间的通信。比如请求网络，等网络返回时通过Handler或Broadcast、LocalBroadcast通知UI，两个Fragment之间需要通过Listener通信，这些需求都可以通过事件总线实现。
 
 ## 应用场景
 
@@ -10,20 +10,22 @@ EventBus、Otto、RxBus是Android端优化的publish/subscribe事件总线，简
 
 ## 对比
 
-- Guava EventBus首先实现了一个基于发布订阅的消息类库，默认以注解来查找订阅者
+- Guava EventBus首先实现了一个基于发布订阅的消息类库，默认以注解来查找订阅者，该库是google，体积庞大
 - Otto借鉴Guava EventBus，针对Android平台做了修改，默认以注解来查找订阅、生产者
-- EventBus和前两个都很像，v2.4后基于反射的命名约定查找订阅者，根据其自己的说法，效率上优于Otto
-- 相邻组件还是用intent传递数据
-- Otto是基于UI线程且不能发送黏性事件
-- 都是基于观察者模式，用RxJava能轻松实现，但RxBus需要自己处理异常，但体积小
-- EventBus可切换线程，3.0后也加入方法注解，建议使用EventBus，也就50K
+- EventBus和前两个都很像，默认以注解来查找订阅者，效率上优于Otto，支持Sticky
+- 都是基于观察者模式，用RxJava能轻松实现，需要自己处理异常（在事件处理过程中出异常时，onError() 会被触发，同时队列自动终止，不允许再有事件发出==》重新订阅事件），但体积小
+- Sticky黏性事件：先发送了再注册也能接收到（相邻组件还是用Intent的Bundle传递数据比较好）
+- EventBus、RxBusNew可在方法注解中切换线程，其他的需要自己判断线程状态
+- 不考虑体积大小、没去实测效率，RxBusNew~=EventBus>Otto>RxBus>Messenger，建议RxBusNew（支持tag）、EventBus（支持黏性）把。
 
 
 ## Thanks
 
 - [EventBus](https://github.com/greenrobot/EventBus)
 - [Otto](https://github.com/square/otto)
-- [RxBus](https://github.com/YoKeyword/RxBus)
+- [RxBusOld](https://github.com/YoKeyword/RxBus) 
+- [RxBusNew](https://github.com/AndroidKnife/RxBus) 
+- [Kelin-Hong](https://github.com/Kelin-Hong/MVVMLight) 
 
 
 ## License

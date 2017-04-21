@@ -1,4 +1,4 @@
-package com.cxh.busdemo.rxbus;
+package com.cxh.busdemo.rxbusolder;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -80,7 +80,7 @@ public class RxBusFragment extends Fragment {
                 .subscribe(new Consumer<Event>() {
 
                     @Override
-                    public void accept(@NonNull Event myEvent) throws Exception {
+                    public void accept(@NonNull Event myEvent) {
                         Log.d(TAG, "onNext--->" + myEvent.getName());
                         Log.d(TAG, "onNext--->" + Thread.currentThread().getName());
 
