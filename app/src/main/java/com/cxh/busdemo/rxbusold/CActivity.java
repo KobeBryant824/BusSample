@@ -1,4 +1,4 @@
-package com.cxh.busdemo.rxbusolder;
+package com.cxh.busdemo.rxbusold;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

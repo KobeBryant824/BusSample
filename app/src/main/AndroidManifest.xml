@@ -21,12 +21,12 @@
         <activity android:name=".eventbus.CActivity"/>
         <activity android:name=".otto.BActivity"/>
         <activity android:name=".otto.CActivity"/>
-        <activity android:name=".rxbusolder.BActivity"/>
-        <activity android:name=".rxbusolder.CActivity"/>
+        <activity android:name=".rxbusold.BActivity"/>
+        <activity android:name=".rxbusold.CActivity"/>
         <activity android:name=".messenger.BActivity"/>
         <activity android:name=".messenger.CActivity"/>
-        <activity android:name=".rxbusnew.BActivity"/>
-        <activity android:name=".rxbusnew.CActivity"/>
+        <activity android:name=".rxbus.BActivity"/>
+        <activity android:name=".rxbus.CActivity"/>
     </application>
 
 </manifest>

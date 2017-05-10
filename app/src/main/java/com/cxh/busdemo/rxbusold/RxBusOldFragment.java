@@ -1,4 +1,4 @@
-package com.cxh.busdemo.rxbusolder;
+package com.cxh.busdemo.rxbusold;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,8 +25,8 @@ import io.reactivex.functions.Function;
 /**
  * Created by Hai (haigod7@gmail.com) on 2017/4/18 17:21.
  */
-public class RxBusFragment extends Fragment {
-    public static final String TAG = "RxBusFragment";
+public class RxBusOldFragment extends Fragment {
+    public static final String TAG = "RxBusOldFragment";
     private TextView mResultTv;
     private CheckBox mCheckBox;
     private Disposable mRxSub;

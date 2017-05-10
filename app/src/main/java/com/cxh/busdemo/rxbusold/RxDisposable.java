@@ -1,4 +1,4 @@
-package com.cxh.busdemo.rxbusolder;
+package com.cxh.busdemo.rxbusold;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;

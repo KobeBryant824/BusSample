@@ -1,4 +1,4 @@
-package com.cxh.busdemo.rxbusnew;
+package com.cxh.busdemo.rxbus;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -51,7 +51,7 @@ public class CActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                RxBus.get().post(RxBusNewFragment.RXBUSNEWFRAGMENT_UPDATE_TOKEN, new Event("大家好，我是RxBusNew，我是一条来自C的子线程带Tag消息"));
+                RxBus.get().post(RxBusFragment.RXBUSNEWFRAGMENT_UPDATE_TOKEN, new Event("大家好，我是RxBusNew，我是一条来自C的子线程带Tag消息"));
 
                 finish();
             }

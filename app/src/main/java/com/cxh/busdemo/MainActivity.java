@@ -11,8 +11,8 @@ import android.view.MenuItem;
 import com.cxh.busdemo.eventbus.EventBusFragment;
 import com.cxh.busdemo.messenger.MessengerFragment;
 import com.cxh.busdemo.otto.OttoFragment;
-import com.cxh.busdemo.rxbusnew.RxBusNewFragment;
-import com.cxh.busdemo.rxbusolder.RxBusFragment;
+import com.cxh.busdemo.rxbus.RxBusFragment;
+import com.cxh.busdemo.rxbusold.RxBusOldFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.navigation_rxbus_old:
-                    switchContent(new RxBusFragment());
+                    switchContent(new RxBusOldFragment());
                     return true;
 
                 case R.id.navigation_rxbus_new:
-                    switchContent(new RxBusNewFragment());
+                    switchContent(new RxBusFragment());
                     return true;
 
                 case R.id.navigation_messenger:

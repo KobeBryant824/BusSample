@@ -1,4 +1,4 @@
-package com.cxh.busdemo.rxbusnew;
+package com.cxh.busdemo.rxbus;
 
 import android.content.Intent;
 import android.os.Bundle;
