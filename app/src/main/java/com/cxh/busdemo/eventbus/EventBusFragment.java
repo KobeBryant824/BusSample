@@ -67,6 +67,13 @@ public class EventBusFragment extends Fragment {
 
         Log.d(TAG, "onPostingEvent:" + event);
         Log.d(TAG, "onPostingEvent:" + Thread.currentThread().getName());
+
+        // 模拟错误发生时，是否处理异常，如果处理了是否重新订阅了
+        // 处理了，能接收
+        event = null;
+        String name = event.getName();
+        Log.d(TAG, "hahahahhah:" );
+
     }
 
     /**

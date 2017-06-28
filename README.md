@@ -9,18 +9,17 @@
 ## 对比
 - Guava EventBus 首先实现了一个基于发布订阅的消息类库，默认以注解来查找订阅者，该库是 google，体积庞大
 - Otto 借鉴 Guava EventBus，针对 Android 平台做了修改，默认以注解来查找订阅、生产者
-- EventBus 和前两个都很像，默认以注解来查找订阅者，效率上优于 Otto，支持 Sticky
-- 都是基于观察者模式，用 RxJava 能轻松实现，RxBusOld 需要自己处理异常（在事件处理过程中出异常时，onError() 会被触发，同时队列自动终止，不允许再有事件发出==》重新订阅事件），但体积小
-- EventBus、RxBus（支持tag） 可在方法注解中切换线程，其他的需要自己判断线程状态
-- Sticky 黏性事件：先发送了再注册也能接收到（相邻组件传递数据还是用 Intent 的 Bundle）
-- 不考虑体积大小、没去实测效率，EventBus、RxBus > Otto > RxBusOld > Messenger，建议EventBus（支持黏性、也可自定义tag）把。
+- EventBus 和前两个都很像，默认以注解来查找订阅者，效率上优于 Otto，支持 Sticky（黏性事件：先发送了再注册也能接收到（相邻组件传递数据还是用 Intent 的 Bundle比较好））
+- 都是基于观察者模式，用 RxJava 能轻松实现， RxBus 结合 Otto 注解、EventBus 线程切换，并支持 Tag 发送（这点非常好，有时需要经常发送 String、List 等数据且不想定义多个相似实体）
+- 事件回调中，如果发生异常：EventBus、Messenger 都自己处理异常了，自动重新订阅，Otto、RxBus 都会抛运行时异常且不会重新订阅，这很危险
+- 不考虑体积大小、没去实测效率，考虑库的更新速度、代码优雅性，个人感觉 EventBus（支持 Tag 注解就真的无敌了） > RxBus（把异常处理下还是很优雅低） > Messenger > RxBusOld > Otto
 
 ## Thanks
 - [EventBus](https://github.com/greenrobot/EventBus)
 - [Otto](https://github.com/square/otto)
-- [RxBusOld](https://github.com/YoKeyword/RxBus) 
 - [RxBus](https://github.com/AndroidKnife/RxBus) 
+- [RxBusOld](https://github.com/YoKeyword/RxBus) 
 - [Messenger](https://github.com/Kelin-Hong/MVVMLight) 
 
 ## License
-   Apache-2.0
+- [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0)

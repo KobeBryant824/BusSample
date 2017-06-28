@@ -103,7 +103,7 @@ public class RxBusOldFragment extends Fragment {
                         Log.e(TAG, "onError");
                         /**
                          * 这里注意: 一旦订阅过程中发生异常,走到onError,则代表此次订阅事件完成,后续将收不到onNext()事件,
-                         * 即 接受不到后续的任何事件,实际环境中,我们需要在onError里 重新订阅事件!
+                         * 即接受不到后续的任何事件,实际环境中,我们需要在onError里 重新订阅事件!
                          */
                         TUtil.showShort(getActivity(), R.string.resubscribe);
 

@@ -4,7 +4,7 @@
     <string name="title_eventbus">EventBus</string>
     <string name="title_otto">Otto</string>
     <string name="title_rxbus_old">RxBusOld</string>
-    <string name="title_rxbus_new">RxBusNew</string>
+    <string name="title_rxbus_new">RxBus</string>
     <string name="title_messenger">Messenger</string>
 
     <string name="resubscribe">发生了Error, 已重新订阅</string>

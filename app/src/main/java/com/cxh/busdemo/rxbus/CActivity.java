@@ -35,14 +35,11 @@ public class CActivity extends AppCompatActivity {
         return "大家好，我是RxBusNew，我是一条来自C的消息" + Thread.currentThread();
     }
 
-    /**
-     * 发生异常直接终止后续事件的传送，这种方式更麻烦，还不能在注册房处理异常，重新订阅
-     */
     public void onPublishEventOnMainThread(View view) {
 
 //        RxBus.get().post(tell());
 
-        RxBus.get().post(new Event("大家好，我是RxBusNew，我是一条来自C的消息"));
+        RxBus.get().post(new Event("大家好，我是RxBus，我是一条来自C的消息"));
         finish();
     }
 

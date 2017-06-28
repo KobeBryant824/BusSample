@@ -20,7 +20,6 @@ public class CActivity extends AppCompatActivity {
         setTitle("C");
     }
 
-
     public void onPublishEventOnMainThread(View view){
         RxBus.getDefault().post(new Event("大家好，我是RxBusOld，我是一条来自C的消息"));
         finish();

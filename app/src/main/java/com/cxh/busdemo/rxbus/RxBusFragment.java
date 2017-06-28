@@ -1,4 +1,4 @@
-package com.cxh.busdemo.otto;
+package com.cxh.busdemo.rxbus;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,20 +13,19 @@ import android.widget.TextView;
 
 import com.cxh.busdemo.Event;
 import com.cxh.busdemo.R;
-import com.squareup.otto.Subscribe;
+import com.hwangjr.rxbus.RxBus;
+import com.hwangjr.rxbus.annotation.Subscribe;
+import com.hwangjr.rxbus.annotation.Tag;
+import com.hwangjr.rxbus.thread.EventThread;
 
 /**
  * Created by Hai (haigod7@gmail.com) on 2017/4/18 17:21.
  */
-public class OttoFragment extends Fragment {
-    public static final String TAG = "OttoFragment";
+public class RxBusFragment extends Fragment {
+    //  TOKEN: 相当于broadcast的Action,谁注册了这个令牌，相当于准备接收这个消息*/
+    public static final String RXBUSNEWFRAGMENT_UPDATE_TOKEN = "rxbusnewfragment_update_token";
+    public static final String TAG = "RxBusFragment";
     private TextView mResultTv;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        BusProvider.getInstance().register(this);
-    }
 
     @Nullable
     @Override
@@ -38,6 +37,7 @@ public class OttoFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mResultTv = (TextView) view.findViewById(R.id.result_tv);
+        view.findViewById(R.id.sticky_btn).setVisibility(View.GONE);
 
         view.findViewById(R.id.to_b_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,21 +46,47 @@ public class OttoFragment extends Fragment {
             }
         });
 
-        view.findViewById(R.id.sticky_btn).setVisibility(View.GONE);
+        RxBus.get().register(this);
     }
 
-    //这个注解一定要有,表示订阅了MessageEvent,并且方法的用 public 修饰的.方法名可以随意取,重点是参数,它是根据你的参数进行判断来自于哪个发送的事件
     @Subscribe
-    public void showEvent(Event event) {
+    public void eat(Event event) {
         Log.d(TAG, "" + event);
+        Log.d(TAG, "eat: " + Thread.currentThread().getName());
+
         // 模拟错误发生时，是否处理异常，是否下次还能接收到事件
         // 没处理，抛给开发者
 //        try{
 //            event = null;
 //            String name = event.getName();
 //        } catch (Exception e){
-//            BusProvider.getInstance().register(this); // 假如应用上线时出现错误，将不会重新订阅事件
+//            RxBus.get().register(this);// 假如应用上线时出现错误，将不会重新订阅事件
 //        }
+
+        String str = mResultTv.getText().toString();
+        mResultTv.setText(TextUtils.isEmpty(str) ? event.getName() : str + "\n" + event.getName());
+    }
+
+    @Subscribe(
+            thread = EventThread.MAIN_THREAD,
+            tags = {@Tag}
+    )
+    public void eat1(String event) {
+        Log.d(TAG, "eat1: " + Thread.currentThread().getName());
+
+        String str = mResultTv.getText().toString();
+        mResultTv.setText(TextUtils.isEmpty(str) ? event : str + "\n" + event);
+    }
+
+    @Subscribe(
+            thread = EventThread.MAIN_THREAD,
+            tags = {
+                    @Tag(RXBUSNEWFRAGMENT_UPDATE_TOKEN)
+            }
+    )
+    public void eatMore(Event event) {
+        Log.d(TAG, "eatMore: " + Thread.currentThread().getName());
+
         String str = mResultTv.getText().toString();
         mResultTv.setText(TextUtils.isEmpty(str) ? event.getName() : str + "\n" + event.getName());
     }
@@ -68,6 +94,6 @@ public class OttoFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        BusProvider.getInstance().unregister(this);
+        RxBus.get().unregister(this);
     }
 }
