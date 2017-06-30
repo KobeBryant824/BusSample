@@ -7,7 +7,6 @@ import android.view.View;
 
 import com.cxh.busdemo.Event;
 import com.cxh.busdemo.R;
-import com.cxh.busdemo.ResultEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
