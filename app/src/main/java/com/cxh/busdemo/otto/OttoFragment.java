@@ -55,11 +55,12 @@ public class OttoFragment extends Fragment {
         Log.d(TAG, "" + event);
         // 模拟错误发生时，是否处理异常，是否下次还能接收到事件
         // 没处理，抛给开发者
+        // 只好自己trycatch否则会出现后续事件不能接收
 //        try{
-//            event = null;
-//            String name = event.getName();
+//            String nullStr = null;
+//            int length = nullStr.length();
 //        } catch (Exception e){
-//            BusProvider.getInstance().register(this); // 假如应用上线时出现错误，将不会重新订阅事件
+//            e.printStackTrace();
 //        }
         String str = mResultTv.getText().toString();
         mResultTv.setText(TextUtils.isEmpty(str) ? event.getName() : str + "\n" + event.getName());
