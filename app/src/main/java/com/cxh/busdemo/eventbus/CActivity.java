@@ -7,8 +7,11 @@ import android.view.View;
 
 import com.cxh.busdemo.Event;
 import com.cxh.busdemo.R;
+import com.cxh.busdemo.ResultEvent;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
 
 /**
  * Created by Hai (haigod7@gmail.com) on 2017/4/18 17:48.
@@ -24,6 +27,7 @@ public class CActivity extends AppCompatActivity {
 
     public void onPublishEventOnMainThread(View view){
         EventBus.getDefault().post(new Event("大家好，我是EventBus，我是一条来自C的消息"));
+        EventBus.getDefault().post(new ArrayList<>());
         finish();
     }
 

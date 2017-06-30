@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.cxh.busdemo.BuildConfig;
 import com.cxh.busdemo.Event;
 import com.cxh.busdemo.R;
 
@@ -28,6 +29,13 @@ public class EventBusFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        EventBus.builder()
+                .logNoSubscriberMessages(false)
+                .sendNoSubscriberEvent(false)  //在发布事件没有订阅者的情况下保持安静
+                .throwSubscriberException(BuildConfig.DEBUG)//只有在debug模式下，会抛出错误异常
+                .installDefaultEventBus();
+
         EventBus.getDefault().register(this);
     }
 
@@ -63,7 +71,7 @@ public class EventBusFragment extends Fragment {
      * （方法名可以随便取，只要参数和post的匹配就会找到）
      */
     @Subscribe(threadMode = ThreadMode.POSTING)
-    public void onPostingEvent(Event event) {
+    public void a(Event event) {
 
         Log.d(TAG, "onPostingEvent:" + event);
         Log.d(TAG, "onPostingEvent:" + Thread.currentThread().getName());
@@ -80,7 +88,7 @@ public class EventBusFragment extends Fragment {
      * MAIN线程模型：不管是哪个线程发布事件，都在主线程执行onMainEvent方法
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMainEvent(Event event) {
+    public void b(Event event) {
         String str = mResultTv.getText().toString();
         mResultTv.setText(TextUtils.isEmpty(str) ? event.getName() : str + "\n" + event.getName());
 
@@ -93,7 +101,7 @@ public class EventBusFragment extends Fragment {
      * 主线程中发布，onBackgroundEvent方法就在EventBus内部的线程池中执行
      */
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
-    public void onBackgroundEvent(Event event) {
+    public void c(Event event) {
 
         Log.d(TAG, "onBackgroundEvent:" + event);
         Log.d(TAG, "onBackgroundEvent: " + Thread.currentThread().getName());
@@ -103,7 +111,7 @@ public class EventBusFragment extends Fragment {
      * ASYNC线程模型：不管事件在哪个线程发布，onAsyncEvent方法都在EventBus内部的线程池中执行
      */
     @Subscribe(threadMode = ThreadMode.ASYNC)
-    public void onAsyncEvent(Event event) {
+    public void d(Event event) {
 
         Log.d(TAG, "onAsyncEvent:" + event);
         Log.d(TAG, "onAsyncEvent: " + Thread.currentThread().getName());
